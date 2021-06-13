@@ -1,8 +1,16 @@
 <template>
     <div>
-        <input type="text" v-model="number" @keyup.enter="finishedInput">
-        <button @click="finishedInput">ОК</button>
-        <button @click="back">Назад</button>
+        <input 
+            type="text" 
+            v-model="number" 
+            @keyup.enter="finishedInput"
+        />
+        <button @click="finishedInput">
+            ОК
+        </button>
+        <button @click="back">
+            Назад
+        </button>
     </div>
 </template>
 
@@ -10,16 +18,10 @@
     export default {
         name: 'Workplace',
 
-        props: {
-            disabled: {
-                type: Boolean
-            }
-        },
-
         data() {
             return {
                 display: false,
-                number: ''
+                number: '',
             }
         },
 
@@ -31,7 +33,7 @@
             finishedInput() {
                 this.$emit('finishedInput', this.number)
                 this.number = ''
-            }
+            },
         }
     }
 </script>

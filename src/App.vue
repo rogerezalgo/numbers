@@ -1,16 +1,30 @@
 <template>
     <div class="container">
-        <Choice v-if="ChoiceDisplay" @start="start" />
+        <Choice 
+            v-if="ChoiceDisplay" 
+            @start="start" 
+        />
 
-        <div id="number" v-if="displayNumber">
+        <div 
+            id="number" 
+            v-if="displayNumber"
+        >    
             {{ number }}
         </div>
         
         <br>
         
-        <Workplace v-if="WorkPlaceDisplay" @back="back" @finishedInput="finishedInput" :disabled="disableInput"/>
+        <Workplace 
+            v-if="WorkPlaceDisplay" 
+            @back="back" 
+            @finishedInput="finishedInput" 
+            :disabled="disableInput"
+        />
 
-        <div id="truth" v-if="truth">
+        <div 
+            id="truth" 
+            v-if="truth"
+        >
             {{ truthValue }}
         </div>
     </div>
@@ -24,7 +38,7 @@
        
         components: {
             Choice,
-            Workplace
+            Workplace,
         },
 
         data() {
@@ -106,8 +120,8 @@
                         this.truthValue = ''
                     }, 1500)
                 }
-                setTimeout(() => this.start(true, [this.rank, this.time]), 1700)
-            }
+                setTimeout(() => this.start(true, [this.rank, this.time]), 1550)
+            },
         }
     }
 </script>
