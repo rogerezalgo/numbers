@@ -14,7 +14,7 @@
                 Выберите время показа:
             </h2>
             <ChoiceBox 
-                v-for="prop in showTime" 
+                v-for="prop in showTimeProps" 
                 :key="prop.id" 
                 :data="prop" 
                 @chosen="chosen" 
@@ -28,16 +28,20 @@
 
 <script>
     import ChoiceBox from './ChoiceBox.vue' 
-    import getNumberRankProps from '../assets/getNumberRankProps' 
-    import showTime from '../assets/showTime'
+    // import getNumberRankProps from '../assets/getNumberRankProps'
+    import radioButtonProps from '../assets/radioButtonProps'
+    // import showTime from '../assets/showTime'
+
+    const numberRankProps = radioButtonProps.numberRankProps
+    const showTimeProps = radioButtonProps.showTimeProps
     
     export default {
         name: 'Choice',
 
         data() {
             return {
-                numberRankProps: getNumberRankProps(),
-                showTime,
+                numberRankProps: numberRankProps,
+                showTimeProps: showTimeProps,
 
                 choosenParams: ['', ''],
                 display: true

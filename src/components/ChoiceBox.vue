@@ -9,7 +9,7 @@
             @change="chosen"
         >
         <label 
-            :for="data.for"
+            :for="data.id"
         > 
             {{ data.label }} 
         </label>
@@ -40,3 +40,9 @@
         }
     }
 </script>
+
+<style>
+    [type="radio"], label {
+        cursor: pointer
+    }
+</style>
