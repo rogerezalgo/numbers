@@ -1,26 +1,28 @@
 <template>
-    <div class="container">
+    <div class="block">
+        <h1>
+            Игра "ЗАПОМНИ ЧИСЛО"
+        </h1>
+
+        <br>
+
         <Choice 
             v-if="ChoiceDisplay" 
             @start="start" 
         />
-
         <div 
             id="number" 
             v-if="displayNumber"
         >    
             {{ number }}
         </div>
-        
-        <br>
-        
+             
         <Workplace 
             v-if="WorkPlaceDisplay" 
             @back="back" 
             @finishedInput="finishedInput" 
             :disabled="disableInput"
         />
-
         <div 
             id="truth" 
             v-if="truth"
@@ -60,22 +62,23 @@
         methods: {
             start(display, params) {
                 const rank = params[0].replace(/[sr]/g, ''),
-                time = params[1].replace(/[sr]/g, '')
+                    time = params[1].replace(/[sr]/g, '')
 
                 this.rank = rank
                 this.time = time
 
-                if(!this.rank && !this.time) return false
+                if(!this.rank || !this.time) return false
 
                 const generateNumber = (from, to) => {
-                    const randomNum = Math.floor(Math.random() * to) + from
+                    //Генерация случайного числа, НЕ ВКЛЮЧАЯ крайний верхний предел
+                    const randomNum = Math.floor(Math.random() * (to - from)) + from 
                     return randomNum
                 }
 
-                if(rank == 2) this.number = generateNumber(10, 99)
-                else if(rank == 3) this.number = generateNumber(100, 999)
-                else if(rank == 4) this.number = generateNumber(1000, 9999)
-                else if(rank == 5 ) this.number = generateNumber(10000, 99999)
+                if(rank == 2) this.number = generateNumber(10, 100) // 10 - 99
+                else if(rank == 3) this.number = generateNumber(100, 1_000) // 100 - 999
+                else if(rank == 4) this.number = generateNumber(1_000, 10_000) // 1_000 - 9_999
+                else if(rank == 5 ) this.number = generateNumber(10_000, 100_000) // 10_000 - 99_999 
 
                 const showNumber = () => {
                     this.displayNumber = true
@@ -125,3 +128,20 @@
         }
     }
 </script>
+
+<style scoped>
+    .block {
+        display: block;
+        margin-top: 10px;
+        width: 50%;
+        margin: 10px auto;
+        padding: 15px;
+        border: solid 1px #333;
+        border-radius: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+</style>

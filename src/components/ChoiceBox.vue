@@ -1,7 +1,8 @@
 <template>
     <div>
         <input 
-            type="radio" 
+            type="radio"
+            class="form-check-input" 
             :id="data.id" 
             :name="data.name" 
             v-model="picked" 
@@ -10,8 +11,9 @@
         >
         <label 
             :for="data.id"
+            class="form-check-label"
         > 
-            {{ data.label }} 
+            <span>&nbsp;</span>{{ data.label }} 
         </label>
     </div>
 </template>
@@ -41,8 +43,15 @@
     }
 </script>
 
-<style>
+<style scoped>
     [type="radio"], label {
+        font-size: 18px;
         cursor: pointer
+    }
+    div {
+        display: block;
+        margin: 0 auto;
+        width: 150px;
+        padding-left: 20px
     }
 </style>

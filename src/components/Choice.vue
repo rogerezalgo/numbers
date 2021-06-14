@@ -1,5 +1,5 @@
 <template>
-    <form action="#">
+    <form @submit.prevent="start">
         <div class="container">
             <h2>
                 Выберите разрядность числа:
@@ -19,7 +19,10 @@
                 :data="prop" 
                 @chosen="chosen" 
             />
-            <button @click="start">
+            <button 
+                type="submit"
+                class="btn btn-primary"
+            >
                 Старт
             </button>
         </div>
@@ -28,9 +31,7 @@
 
 <script>
     import ChoiceBox from './ChoiceBox.vue' 
-    // import getNumberRankProps from '../assets/getNumberRankProps'
     import radioButtonProps from '../assets/radioButtonProps'
-    // import showTime from '../assets/showTime'
 
     const numberRankProps = radioButtonProps.numberRankProps
     const showTimeProps = radioButtonProps.showTimeProps
@@ -43,7 +44,7 @@
                 numberRankProps: numberRankProps,
                 showTimeProps: showTimeProps,
 
-                choosenParams: ['', ''],
+                chosenParams: ['', ''],
                 display: true
             }
         },
@@ -55,14 +56,14 @@
         methods: {
             chosen(picked) {
                 if(picked.includes('r')) {
-                    this.choosenParams[0] = picked
+                    this.chosenParams[0] = picked
                 } else {
-                    this.choosenParams[1] = picked
+                    this.chosenParams[1] = picked
                 }
             },
 
             start() {
-                this.$emit('start', this.display, this.choosenParams)
+                this.$emit('start', this.display, this.chosenParams)
             }
         }
     }
@@ -70,8 +71,24 @@
 
 <style scoped>
     .container {
+        margin: 0 auto;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        align-items: center;
+        justify-content: center;
+    }
+
+    h2 {
+        margin-top: 30px;
+        font-size: 1.65rem;
+    }
+   
+    button {
+        display: flex;
+        margin-top: 50px;
+        width: 125px;
+        height: 35px;
+        justify-content: center;
+        align-items: center;
     }
 </style>
