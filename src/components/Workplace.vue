@@ -1,10 +1,15 @@
 <template>
     <div>
         <input 
-            type="text" 
+            type="text"
+            :style="data.inputClass" 
+            v-show="data.showInput"
             v-model="number" 
             @keyup.enter="finishedInput"
         />
+        <span v-show="data.displayNumber">
+            {{ data.number }}
+        </span>
         <div class="btn-container">
             <button 
                 @click="finishedInput"
@@ -26,6 +31,13 @@
     export default {
         name: 'Workplace',
 
+        props : {
+            data: {
+                type: Object,
+                require: true,
+            }
+        },
+
         data() {
             return {
                 display: false,
@@ -40,7 +52,8 @@
 
             finishedInput() {
                 this.$emit('finishedInput', this.number)
-                this.number = ''
+                
+                setTimeout(() => this.number = '', 500)
             },
         }
     }
@@ -76,5 +89,9 @@
         padding: 5px;
         border: solid 1px #333;
         border-radius: 10px;
+    }
+
+    span {
+        font-size: 32px;
     }
 </style>
